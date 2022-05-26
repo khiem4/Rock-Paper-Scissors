@@ -1,28 +1,22 @@
 const rPs = ['rock', 'paper', 'scissor'];
 let userScore = 0;
 let computerScore = 0;
-
-
+let playerChoice;
 function computerPlay() {
     return rPs[Math.floor(Math.random() * rPs.length)];
 }
 
-function playerPlay() {
-    let playerSelection = prompt('Input here').toLowerCase();
-    return playerSelection;
-}
 
 
 
-function playRound() {
-    let computerSelection = computerPlay();
-    let playerSelection = playerPlay();
-    if (playerSelection === computerSelection) {
+function playRound(playerSelection, computer = computerPlay()) {
+
+    if (playerSelection == computer) {
         return 'Draw';
     } else if (
-        (playerSelection == 'rock' && computerSelection == 'scissor') ||
-        (playerSelection == 'paper' && computerSelection == 'rock') ||
-        (playerSelection == 'scissor' && computerSelection == 'paper')) {
+        (playerSelection == 'rock' && computer == 'scissor') ||
+        (playerSelection == 'paper' && computer == 'rock') ||
+        (playerSelection == 'scissor' && computer == 'paper')) {
         userScore++;
         return 'You win';
     } else {
@@ -31,20 +25,16 @@ function playRound() {
     }
 }
 
+console.log(playRound());
 
-function game() {
-    for (let i = 1; i <= 5; i++) {
-        console.log(playRound());
-        console.log((`Player Score: ${userScore} Computer Score: ${computerScore}`));
-    }
-    if (userScore > computerScore) return 'Player Win';
-    else if (userScore == computerScore) return 'Tie'
-    else { return 'Computer Win' }
+const buttons = document.querySelectorAll('button');
 
-}
-
-console.log(game());
-
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        playerChoice = button.getAttribute('class');
+        console.log(playRound(playerChoice));
+    });
+})
 
 
 
