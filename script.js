@@ -27,7 +27,7 @@ function playRound(playerSelection, computer = computerPlay()) {
         roundScore.textContent = 'Player win this round';
     } else {
         comScore.textContent = 'Computer win ' + ++computerScore + ' time';
-        roundScore.textContent = 'Computer win this round'
+        roundScore.textContent = 'Computer win '
     }
     if (userScore == 5) game.textContent = 'Player win this game';
     if (computerScore == 5) game.textContent = 'Computer win this game';
